@@ -27,6 +27,7 @@ public class WallMover : MonoBehaviour {
 
     public float targetPosition;
 
+    public bool isGood;
     public bool isOver;
 
     private ParticleSystem particles;
@@ -35,6 +36,8 @@ public class WallMover : MonoBehaviour {
 
     public AudioSource clickSound;
 
+    public float overLimit = 0.5f;
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -42,6 +45,13 @@ public class WallMover : MonoBehaviour {
         currMovingDelay = movingDelay;
         particles = GetComponentsInChildren<ParticleSystem>()[0];
         moved = 0;
+    }
+
+    void OnDisable()
+    {
+        if (particles) {
+            particles.Stop();
+        }
     }
 	
     // Update is called once per frame
@@ -58,11 +68,26 @@ public class WallMover : MonoBehaviour {
             } else {
                 gameObject.transform.localPosition += moveDirection * moveSpeed * Time.deltaTime;
                 moved += moveSpeed * Time.deltaTime;
+
                 if (!isOver && moved > targetPosition)
                 {
                     clickSound.Play();
                     isOver = true;
+                    isGood = true;
+                    moveSpeed = 0.015f;
                 }
+
+                if( moveSpeed < 0.2f)
+                {
+                    moveSpeed += 0.1f * Time.deltaTime;
+                    moveSpeed = Mathf.Min(moveSpeed, 0.2f);
+                }
+
+                if( isGood && moved > targetPosition + overLimit)
+                {
+                    isGood = false;
+                }
+                
             }
             particles.Play();
             if (!wallSound.isPlaying)
