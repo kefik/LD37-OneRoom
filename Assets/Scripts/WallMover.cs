@@ -23,6 +23,8 @@ public class WallMover : MonoBehaviour {
 
     public float currMovingDelay;
 
+    public float moved;
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -40,6 +42,7 @@ public class WallMover : MonoBehaviour {
                 currMovingDelay -= Time.deltaTime;
             } else { 
                 gameObject.transform.localPosition += moveDirection * moveSpeed * Time.deltaTime;
+                moved += moveSpeed * Time.deltaTime;
             }
         } else
         {

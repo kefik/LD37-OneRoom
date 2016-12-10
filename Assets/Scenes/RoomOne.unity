@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71252096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -294,7 +294,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -701855292
+  randomSeed: 301184860
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2150,6 +2150,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   renderer: {fileID: 0}
   currMovingDelay: 0
+  moved: 0
 --- !u!54 &277197682
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2176,6 +2177,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a461894f039f9ee43b36c74bba264c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &316918862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 316918863}
+  - 114: {fileID: 316918864}
+  m_Layer: 0
+  m_Name: SlamManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &316918863
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316918862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 488043503}
+  m_RootOrder: 1
+--- !u!114 &316918864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316918862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26558bbad3e0bd342ba01e833fbbb25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movedTreshold: 5
+  moveSpeedMulti: 3
+  moveSpeedCap: 5
+  wallLeft: {fileID: 966856989}
+  wallRight: {fileID: 1821458787}
+  wallFront: {fileID: 277197675}
+  wallBack: {fileID: 1706107842}
+  moved: 0
 --- !u!1 &439323427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2336,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1893150782
+  randomSeed: 1379683021
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -4037,10 +4086,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 439323427}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
   m_Children:
   - {fileID: 717546397}
   m_Father: {fileID: 1788158060}
@@ -4135,6 +4184,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1959090450}
+  - {fileID: 316918863}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1 &715406214
@@ -4204,7 +4254,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -2123092533
+  randomSeed: -661407238
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -6032,7 +6082,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -863800624
+  randomSeed: -2120167786
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -7917,7 +7967,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -1995729955
+  randomSeed: 1965863329
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -9702,7 +9752,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!54 &966856995
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9738,6 +9788,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   renderer: {fileID: 0}
   currMovingDelay: 0
+  moved: 0
 --- !u!114 &966856997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9939,7 +9990,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1454817343
+  randomSeed: 306799690
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -11700,7 +11751,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1554344808}
   m_LocalRotation: {x: -0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
   m_Children:
@@ -11809,6 +11860,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   renderer: {fileID: 0}
   currMovingDelay: 0
+  moved: 0
 --- !u!54 &1706107849
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11961,7 +12013,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
@@ -11972,10 +12024,10 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1788158055}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1788158064
 MonoBehaviour:
@@ -12088,7 +12140,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!54 &1821458793
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12124,6 +12176,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   renderer: {fileID: 0}
   currMovingDelay: 0
+  moved: 0
 --- !u!114 &1821458795
 MonoBehaviour:
   m_ObjectHideFlags: 0
