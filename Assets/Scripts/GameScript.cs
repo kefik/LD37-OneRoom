@@ -10,6 +10,7 @@ public class GameScript : MonoBehaviour {
     private bool won;
     public ParticleSystem endSystem;
     public AudioSource heavenSound;
+    public AudioSource hellSound;
     private bool hasMistake;
     // Use this for initialization
     void Start()
@@ -65,6 +66,12 @@ public class GameScript : MonoBehaviour {
     public void SequenceMistake()
     {
         hasMistake = true;
+        GameObject.Find("PointLight").GetComponent<LampaEffects>().Scarytime();
+        print("HAS MISTAKES");
+        if( !hellSound.isPlaying)
+        {
+            hellSound.Play();
+        }
     }
 
 	
