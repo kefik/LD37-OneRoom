@@ -41,13 +41,18 @@ public class WallMover : MonoBehaviour {
     public bool justfmove;
 
     public int numberInSequence;
-    
+
+    public float targetSpeed = 0.2f;
+
+    private GameScript manager;
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         m_renderer = GetComponent<Renderer>();
         currMovingDelay = movingDelay;
         particles = GetComponentsInChildren<ParticleSystem>()[0];
+        manager = GameObject.Find("GameManager").GetComponent<GameScript>();
         moved = 0;
     }
 
@@ -74,7 +79,7 @@ public class WallMover : MonoBehaviour {
 
                 if (!isOver && moved > targetPosition)
                 {
-                    if (GameObject.Find("GameManager").GetComponent<GameScript>().NumGoodWalls() == numberInSequence)
+                    if (manager.NumGoodWalls() == numberInSequence)
                     {
                         clickSound.Play();
                     }else{
@@ -82,18 +87,19 @@ public class WallMover : MonoBehaviour {
                     }
                     isOver = true;
                     isGood = true;
-                    moveSpeed = 0.015f;
+                    moveSpeed = 0.018f;
                 }
 
-                if( moveSpeed < 0.2f)
+                if( moveSpeed < targetSpeed)
                 {
                     moveSpeed += 0.1f * Time.deltaTime;
-                    moveSpeed = Mathf.Min(moveSpeed, 0.2f);
+                    moveSpeed = Mathf.Min(moveSpeed, targetSpeed);
                 }
 
                 if( isGood && moved > targetPosition + overLimit)
                 {
                     isGood = false;
+                    manager.SequenceMistake();
                 }
                 
             }

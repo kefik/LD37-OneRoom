@@ -10,6 +10,7 @@ public class GameScript : MonoBehaviour {
     private bool won;
     public ParticleSystem endSystem;
     public AudioSource heavenSound;
+    public AudioSource hellSound;
     private bool hasMistake;
     // Use this for initialization
     void Start()
@@ -36,7 +37,7 @@ public class GameScript : MonoBehaviour {
 
     IEnumerator SlowStart()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         for (int i = 0; i < 4; i++)
         {
             walls[i].GetComponent<WallMover>().enabled = true;
@@ -53,6 +54,12 @@ public class GameScript : MonoBehaviour {
     public void SequenceMistake()
     {
         hasMistake = true;
+        GameObject.Find("PointLight").GetComponent<LampaEffects>().Scarytime();
+        print("HAS MISTAKES");
+        if( !hellSound.isPlaying)
+        {
+            hellSound.Play();
+        }
     }
 
 	
