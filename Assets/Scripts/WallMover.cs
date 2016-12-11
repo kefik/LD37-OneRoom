@@ -88,6 +88,7 @@ public class WallMover : MonoBehaviour {
                         if (firstPlay) {
                             GameObject.Find("Phaser").GetComponent<Phaser>().StartPhase("Hint");
                         }
+                        print("CLING CLING");
                         clickSound.Play();
                     }else{
 
