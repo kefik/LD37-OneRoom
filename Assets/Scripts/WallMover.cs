@@ -110,20 +110,30 @@ public class WallMover : MonoBehaviour {
                 }
                 
             }
-            particles.Play();
-            if ( (!isOver || isGood ) && !wallSound.isPlaying)
-            {
-                wallSound.Play();
-            }
 
-            if ((isOver && !isGood) && !wallDifSound.isPlaying)
+            particles.Play();
+            if (currMovingDelay < 0 || forceMove)
             {
-                wallDifSound.Play();
-            }     
+                if ((!isOver || isGood) && !wallSound.isPlaying)
+                {
+                    wallSound.Play();
+                }
+
+                if ((isOver && !isGood) && !wallDifSound.isPlaying)
+                {
+                    wallDifSound.Play();
+                }
+            } else
+            {
+                particles.Stop();
+                wallSound.Stop();
+                wallDifSound.Stop();
+            }
         } else
         {
             particles.Stop();
             wallSound.Stop();
+            wallDifSound.Stop();
             currMovingDelay = movingDelay + (float)r.NextDouble() * movingDelayRandom;
         }
 	}

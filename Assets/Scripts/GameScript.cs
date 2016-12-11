@@ -12,6 +12,10 @@ public class GameScript : MonoBehaviour {
     public AudioSource heavenSound;
     public AudioSource hellSound;
     private bool hasMistake;
+
+    public float maxTimeLimit = 35;
+    public float minTimeLimit = 10;
+
     // Use this for initialization
     void Start()
     {
@@ -31,6 +35,11 @@ public class GameScript : MonoBehaviour {
         }
 
         GameObject.Find("Phaser").GetComponent<Phaser>().StartPhase("Opening");
+
+        float timeLimit = maxTimeLimit - (numGames * 2);
+        if (timeLimit < minTimeLimit) timeLimit = minTimeLimit;
+
+        GameObject.Find("SlamManager").GetComponent<SlamManager>().timeLimit = timeLimit;
 
         StartCoroutine(SlowStart());
     }

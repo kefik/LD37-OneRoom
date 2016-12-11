@@ -11,6 +11,7 @@ public class DeathEndManager : MonoBehaviour {
     IEnumerator EndTheGame()
     {
         GameObject.Find("Main Camera").GetComponent<CamMover>().enabled = false;
+        GameObject.Find("Main Camera").GetComponent<CameraRotate>().freeze = true;
         GameObject.Find("Main Camera").GetComponent<TriggerSplash>().Splash();
 
         GameObject[] walls = new GameObject[4];
