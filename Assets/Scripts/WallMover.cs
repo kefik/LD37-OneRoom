@@ -62,8 +62,6 @@ public class WallMover : MonoBehaviour {
     void Update () {
         moving = justfmove || !IsVisibleFrom(m_renderer, mainCamera);
 
-        
-
         if (moving || forceMove)
         {
             if (currMovingDelay > 0 && !forceMove)
