@@ -38,6 +38,10 @@ public class WallMover : MonoBehaviour {
 
     public float overLimit = 0.5f;
 
+    public bool justfmove;
+
+    public int numberInSequence;
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -56,7 +60,7 @@ public class WallMover : MonoBehaviour {
 	
     // Update is called once per frame
     void Update () {
-        moving = !IsVisibleFrom(m_renderer, mainCamera);
+        moving = justfmove || !IsVisibleFrom(m_renderer, mainCamera);
 
         
 
@@ -71,7 +75,12 @@ public class WallMover : MonoBehaviour {
 
                 if (!isOver && moved > targetPosition)
                 {
-                    clickSound.Play();
+                    if (GameObject.Find("GameManager").GetComponent<GameScript>().NumGoodWalls() == numberInSequence)
+                    {
+                        clickSound.Play();
+                    }else{
+
+                    }
                     isOver = true;
                     isGood = true;
                     moveSpeed = 0.015f;

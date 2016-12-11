@@ -10,6 +10,7 @@ public class GameScript : MonoBehaviour {
     private bool won;
     public ParticleSystem endSystem;
     public AudioSource heavenSound;
+    private bool hasMistake;
     // Use this for initialization
     void Start()
     {
@@ -57,11 +58,16 @@ public class GameScript : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
+    public void SequenceMistake()
+    {
+        hasMistake = true;
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
 
-        bool allgood = true;
+        bool allgood = !hasMistake;
         for (int i = 0; i < 4; i++)
         {
             if( !walls[i].GetComponent<WallMover>().isGood )
@@ -74,6 +80,19 @@ public class GameScript : MonoBehaviour {
             won = true;
             GoodEnding();
         }
+    }
+
+    public int NumGoodWalls()
+    {
+        int ngood = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (walls[i].GetComponent<WallMover>().isGood)
+            {
+                ngood++;
+            }
+        }
+        return ngood;
     }
 
     void GoodEnding()

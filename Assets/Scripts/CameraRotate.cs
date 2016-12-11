@@ -18,11 +18,17 @@ public class CameraRotate : MonoBehaviour {
     public float minPitch = -50;
     public float maxPitch = 90;
 
+    public Camera cam;
+    public float angl;
     void Start()
     {
         if (target == null)
         {
             target = gameObject.transform;
+        }
+        if( cam == null )
+        {
+            cam = gameObject.GetComponent<Camera>();
         }
     }
 
@@ -46,8 +52,17 @@ public class CameraRotate : MonoBehaviour {
 
             transform.rotation = q;
 
-            
+            angl = Vector3.Angle(transform.forward, Vector3.up);
 
+            angl = Mathf.Min(angl, Vector3.Angle(transform.forward, Vector3.down));
+
+            if (angl < 20)
+            {
+                cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, Mathf.Max(52 * angl / 20, 42), 0.2f);
+            }else
+            {
+                cam.fieldOfView = 52;
+            }
         }
 
         /*

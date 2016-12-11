@@ -19,8 +19,10 @@ public class SlamManager : MonoBehaviour {
     private WallMover moverLeft;
     private WallMover moverRight;
     private WallMover moverFront;
-    private WallMover moverBack;    
+    private WallMover moverBack;
 
+    public float timeLimit = 28f;
+    private float elapsed = 0f;
     // Use this for initialization
     void Start () {
         moverLeft = wallLeft.GetComponent<WallMover>();
@@ -44,6 +46,19 @@ public class SlamManager : MonoBehaviour {
                 Slam();
             }
         }
+        elapsed += Time.deltaTime;
+        if( elapsed > timeLimit)
+        {
+            ForceSlam();
+        }
+    }
+    void ForceSlam()
+    {
+        Slam();
+        moverLeft.justfmove = true;
+        moverRight.justfmove = true;
+        moverFront.justfmove = true;
+        moverBack.justfmove = true;
     }
 
     void Slam()

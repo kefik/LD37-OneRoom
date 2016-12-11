@@ -254,7 +254,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.5803922, g: 0.5019608, b: 0.41568628, a: 1}
+      maxColor: {r: 0.7372549, g: 0.654902, b: 0.5686275, a: 1}
       minMaxState: 0
     startSize:
       scalar: 0.91
@@ -761,10 +761,10 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4281945189
+          rgba: 4286618300
         key1:
           serializedVersion: 2
-          rgba: 8958921
+          rgba: 10009550
         key2:
           serializedVersion: 2
           rgba: 0
