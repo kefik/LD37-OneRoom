@@ -3,7 +3,12 @@ using System.Collections;
 
 public class DeathEndManager : MonoBehaviour {
 
-	public void End()
+    public void End()
+    {
+        StartCoroutine(EndTheGame());
+    }
+
+    IEnumerator EndTheGame()
     {
         GameObject.Find("Main Camera").GetComponent<CamMover>().enabled = false;
         GameObject.Find("Main Camera").GetComponent<TriggerSplash>().Splash();
@@ -14,7 +19,7 @@ public class DeathEndManager : MonoBehaviour {
         walls[2] = GameObject.Find("WallFront");
         walls[3] = GameObject.Find("WallBack");
 
-        for(int i = 0; i < walls.Length; i++)
+        for (int i = 0; i < walls.Length; i++)
         {
             walls[i].GetComponent<WallMover>().enabled = false;
             AudioSource ac = walls[i].GetComponent<AudioSource>();
@@ -24,9 +29,15 @@ public class DeathEndManager : MonoBehaviour {
         AudioSource s = GetComponent<AudioSource>();
         s.Play();
 
-        StartCoroutine(restart());
-    }
+        yield return new WaitForSeconds(1);
 
+        GameObject.Find("Phaser").GetComponent<Phaser>().StartPhase("Ending");
+
+        yield return GameObject.Find("Phaser").GetComponent<Phaser>().WaitPhaseEnd();
+
+        GameObject.Find("GameManager").GetComponent<GameScript>().StartGame();
+    }
+    
     IEnumerator FadeOut(AudioSource wallSound)
     {
         float startVolume = wallSound.volume;
@@ -42,10 +53,4 @@ public class DeathEndManager : MonoBehaviour {
         wallSound.volume = startVolume;
     }
 
-    IEnumerator restart()
-    {
-        yield return new WaitForSeconds(1);
-
-        GameObject.Find("GameManager").GetComponent<GameScript>().StartGame();
-    }
 }

@@ -29,17 +29,9 @@ public class GameScript : MonoBehaviour {
             walls[i].GetComponent<WallMover>().enabled = false;
         }
 
-        StartCoroutine(SlowStart());
+        GameObject.Find("Phaser").GetComponent<Phaser>().StartPhase("Opening");
 
-        GameObject[] level = GameObject.FindGameObjectsWithTag("Level" + (numGames + 1));
-        for (int i = 0; i < level.Length; i++)
-        {
-            SpriteRenderer r = level[i].GetComponent<SpriteRenderer>();
-            if( r )
-            {
-                r.color = new Color(1, 1, 1, 1);
-            }
-        }
+        StartCoroutine(SlowStart());
     }
 
     IEnumerator SlowStart()
