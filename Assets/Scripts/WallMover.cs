@@ -46,6 +46,8 @@ public class WallMover : MonoBehaviour {
 
     public float targetSpeed = 0.2f;
 
+    public bool firstPlay = true;
+
     private GameScript manager;
 
     void Start()
@@ -83,6 +85,9 @@ public class WallMover : MonoBehaviour {
                 {
                     if (manager.NumGoodWalls() == numberInSequence)
                     {
+                        if (firstPlay) {
+                            GameObject.Find("Phaser").GetComponent<Phaser>().StartPhase("Hint");
+                        }
                         clickSound.Play();
                     }else{
 

@@ -9,11 +9,15 @@ public class Fade : MonoBehaviour
     // Use this for initialization
     private Image image;
 
+    private Color source;
+
     public Color target = new Color(0, 0, 0, 1);
 
-    public float speed = 1;
+    public float time = 1;
 
     public bool active = false;
+
+    private float currTime;
 
     void Start()
     {
@@ -25,8 +29,11 @@ public class Fade : MonoBehaviour
     {
         if (!active) return;
 
-        if (IsZero(target.r, image.color.r) && IsZero(target.g, image.color.g) && IsZero(target.b, image.color.b) && IsZero(target.a, image.color.a))
+        currTime -= Time.deltaTime;
+
+        if (currTime < 0)
         {
+            image.color = target;
             Deactivate();
             return;
         }
@@ -41,24 +48,18 @@ public class Fade : MonoBehaviour
 
     private float Tween(float curr, float target)
     {
-        float max = target - curr;
-        float change = Mathf.Sign(target - curr) * Time.deltaTime * speed;
+        float diff = target - curr;
 
-        if (curr >= target)
-        {
-            change = Mathf.Max(max, change);
-        }
-        else
-        {
-            change = Mathf.Min(max, change);
-        }
+        float c = Mathf.Sin((time - currTime) / time);
 
-        return curr + change;
+        return curr + diff * c;
     }
 
     public void Activate()
     {
         active = true;
+        currTime = time;
+        source = image.color;
     }
 
     public void Deactivate()

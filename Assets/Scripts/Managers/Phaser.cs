@@ -33,6 +33,8 @@ public class Phaser : MonoBehaviour {
         {
             GameObject g = (GameObject)o;
 
+            if (!g.activeInHierarchy) continue;
+
             Phase phase = g.GetComponent<Phase>();
             if (phase == null) continue;
 
