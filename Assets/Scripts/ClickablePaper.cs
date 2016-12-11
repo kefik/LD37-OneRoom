@@ -13,8 +13,10 @@ public class ClickablePaper : MonoBehaviour {
     void OnMouseDown()
     {
         print("clicked");
-        Instantiate(unrolledPaper, this.transform.parent.position, Quaternion.identity);
-        
+        Transform a = (Transform) Instantiate(unrolledPaper, this.transform.parent.position, Quaternion.identity);
+        a.parent = this.transform.parent.parent;
+        a.localScale = this.transform.localScale/6;
+        a.position -= new Vector3(0, 0.3f, 0);
         // this object was clicked - do something
         Destroy(this.gameObject);
 
