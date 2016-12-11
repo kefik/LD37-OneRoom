@@ -36,6 +36,8 @@ public class WallMover : MonoBehaviour {
 
     public AudioSource clickSound;
 
+    public AudioSource wallDifSound;
+
     public float overLimit = 0.5f;
 
     public bool justfmove;
@@ -104,10 +106,15 @@ public class WallMover : MonoBehaviour {
                 
             }
             particles.Play();
-            if (!wallSound.isPlaying)
+            if ( (!isOver || isGood ) && !wallSound.isPlaying)
             {
                 wallSound.Play();
             }
+
+            if ((isOver && !isGood) && !wallDifSound.isPlaying)
+            {
+                wallDifSound.Play();
+            }     
         } else
         {
             particles.Stop();

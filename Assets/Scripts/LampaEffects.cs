@@ -31,7 +31,6 @@ public class LampaEffects : MonoBehaviour {
             {
                 scaryTimeIncrease = !scaryTimeIncrease;
             }
-            print("light" + llight.intensity);
         }
 	}
 
