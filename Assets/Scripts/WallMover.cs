@@ -41,7 +41,9 @@ public class WallMover : MonoBehaviour {
     public bool justfmove;
 
     public int numberInSequence;
-    
+
+    public float targetSpeed = 0.2f;
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -82,13 +84,13 @@ public class WallMover : MonoBehaviour {
                     }
                     isOver = true;
                     isGood = true;
-                    moveSpeed = 0.015f;
+                    moveSpeed = 0.018f;
                 }
 
-                if( moveSpeed < 0.2f)
+                if( moveSpeed < targetSpeed)
                 {
                     moveSpeed += 0.1f * Time.deltaTime;
-                    moveSpeed = Mathf.Min(moveSpeed, 0.2f);
+                    moveSpeed = Mathf.Min(moveSpeed, targetSpeed);
                 }
 
                 if( isGood && moved > targetPosition + overLimit)

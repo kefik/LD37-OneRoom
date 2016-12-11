@@ -31,20 +31,24 @@ public class GameScript : MonoBehaviour {
 
         StartCoroutine(SlowStart());
 
-        GameObject[] level = GameObject.FindGameObjectsWithTag("Level" + (numGames + 1));
-        for (int i = 0; i < level.Length; i++)
+        if (numGames > 0 && numGames < 4)
         {
-            SpriteRenderer r = level[i].GetComponent<SpriteRenderer>();
-            if( r )
+            GameObject[] level = GameObject.FindGameObjectsWithTag("Level" + (numGames + 1));
+
+            for (int i = 0; i < level.Length; i++)
             {
-                r.color = new Color(1, 1, 1, 1);
+                SpriteRenderer r = level[i].GetComponent<SpriteRenderer>();
+                if (r)
+                {
+                    r.color = new Color(1, 1, 1, 1);
+                }
             }
         }
     }
 
     IEnumerator SlowStart()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         for (int i = 0; i < 4; i++)
         {
             walls[i].GetComponent<WallMover>().enabled = true;
