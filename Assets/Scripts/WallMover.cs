@@ -41,7 +41,7 @@ public class WallMover : MonoBehaviour {
     public bool justfmove;
 
     public int numberInSequence;
-
+    
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -68,8 +68,9 @@ public class WallMover : MonoBehaviour {
             {
                 currMovingDelay -= Time.deltaTime;
             } else {
+
                 gameObject.transform.localPosition += moveDirection * moveSpeed * Time.deltaTime;
-                moved += moveSpeed * Time.deltaTime;
+                moved += moveSpeed * Time.deltaTime;    
 
                 if (!isOver && moved > targetPosition)
                 {
