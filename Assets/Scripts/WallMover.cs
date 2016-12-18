@@ -91,7 +91,7 @@ public class WallMover : MonoBehaviour {
                         print("CLING CLING");
                         clickSound.Play();
                     }else{
-
+                        manager.SequenceMistake();
                     }
                     isOver = true;
                     isGood = true;
@@ -107,7 +107,6 @@ public class WallMover : MonoBehaviour {
                 if( isGood && moved > targetPosition + overLimit)
                 {
                     isGood = false;
-                    manager.SequenceMistake();
                 }
                 
             }

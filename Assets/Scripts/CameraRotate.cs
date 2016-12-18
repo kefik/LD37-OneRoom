@@ -36,7 +36,7 @@ public class CameraRotate : MonoBehaviour {
     void Update()
     {
         if (freeze) return;
-        if (false || Input.GetMouseButton(0))
+        if (true || Input.GetMouseButton(0))
         {
             pitch += (invertPitch ? -1 : 1) * Input.GetAxis("Mouse Y") * degrees;
             yaw += (invertYaw ? -1 : 1) * Input.GetAxis("Mouse X") * degrees;

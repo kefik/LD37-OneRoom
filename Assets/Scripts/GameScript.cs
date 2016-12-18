@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.PostProcessing;
 
 public class GameScript : MonoBehaviour {
 
@@ -16,6 +17,9 @@ public class GameScript : MonoBehaviour {
     public float maxTimeLimit = 35;
     public float minTimeLimit = 10;
 
+    public GameObject skyball;
+    public PostProcessingProfile profileScary;
+    public PostProcessingProfile profileStandard;
     // Use this for initialization
     void Start()
     {
@@ -41,6 +45,8 @@ public class GameScript : MonoBehaviour {
 
         GameObject.Find("SlamManager").GetComponent<SlamManager>().timeLimit = timeLimit;
 
+        skyball.SetActive(false);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingBehaviour>().profile = profileStandard;
         StartCoroutine(SlowStart());
     }
 
@@ -65,7 +71,8 @@ public class GameScript : MonoBehaviour {
         hasMistake = true;
         GameObject.Find("PointLight").GetComponent<LampaEffects>().Scarytime();
         print("HAS MISTAKES");
-        if( !hellSound.isPlaying)
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessingBehaviour>().profile = profileScary;
+        if ( !hellSound.isPlaying)
         {
             hellSound.Play();
         }
@@ -106,8 +113,20 @@ public class GameScript : MonoBehaviour {
     void GoodEnding()
     {
         print("YOU MADE IT");
+        skyball.SetActive(true);
         endSystem.Play();
         heavenSound.Play();
+
+        //deactivate level specific objects
+        object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+        foreach (object o in obj)
+        {
+            GameObject g = (GameObject)o;
+            Level level = g.GetComponent<Level>();
+            if (level == null) continue;
+            g.SetActive(false);
+        }
+
         for (int i = 0; i < 4; i++)
         {
             if (walls[i].GetComponent<WallMover>().isGood == true)

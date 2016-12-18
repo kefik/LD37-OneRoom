@@ -18,7 +18,7 @@ public class LampaEffects : MonoBehaviour {
     {
 	    if(scaryTime)
         {
-            float delta = Time.deltaTime * Random.Range(0, 255) / 100;
+            float delta = Time.deltaTime * Random.Range(0, 255) / 50;
             if (scaryTimeIncrease)
             {
                 llight.intensity = llight.intensity + delta;
@@ -26,7 +26,7 @@ public class LampaEffects : MonoBehaviour {
             {
                 llight.intensity = llight.intensity - delta;
             }
-            llight.intensity = Mathf.Clamp(llight.intensity, 0, 10);
+            llight.intensity = Mathf.Clamp(llight.intensity, 0, 12);
             if( Random.Range(0, 255) > 220f)
             {
                 scaryTimeIncrease = !scaryTimeIncrease;
